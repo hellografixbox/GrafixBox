@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Service Packages</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Poppins', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+            background: radial-gradient(1200px 500px at 8% 8%, rgba(124,58,237,0.04), transparent 8%),
+                        linear-gradient(180deg, #1e1e2f 0%, #23233e 60%);
+            color: #e6eef8;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            scroll-behavior: smooth;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .main-title {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 2.5em;
+            color: #fff;
+        }
+
+        .package-section {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+            margin-bottom: 60px;
+        }
+
+        .package-card {
+            background-color: #2a2a3d;
+            padding: 30px;
+            border-radius: 12px;
+            width: 320px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .package-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 30px rgba(124, 58, 237, 0.5);
+        }
+
+        .package-card h3 {
+            font-size: 1.7em;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+
+        .price {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #ffffff;
+            display: block;
+            margin-bottom: 20px;
+        }
+
+        .purple-text {
+            color: #9b59b6;
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+
+        .card-details ul {
+            padding-left: 20px;
+        }
+
+        .card-details ul li {
+            margin-bottom: 10px;
+        }
+		
+		.contact-form-section {
+			background-color: #1e1e2f;
+			width:100%;
+			text-align: center;
+			border-radius: 12px;
+			margin-top: 50px;
+			max-width: 1200px;
+			margin-left: auto;
+			margin-right: auto;
+		}
+
+		.form-title {
+			font-size: 2.5em;
+			color: #ffffff;
+			margin-bottom: 40px;
+		}
+
+		.contact-form {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			gap: 20px;
+			padding: 60px;
+		}
+
+		.input-group {
+			display: flex;
+			flex-direction: column;
+			width: 100%;
+			max-width: 500px;
+			text-align: left;
+			animation: fadeInUp 1s ease;
+		}
+
+		.input-group label {
+			margin-bottom: 8px;
+			color: #ffffff;
+			font-weight: bold;
+			font-size: 1.1em;
+		}
+
+		.contact-form input,
+		.contact-form select,
+		.contact-form textarea {
+			background-color: #2a2a3d;
+			color: #ffffff;
+			padding: 15px;
+			border: none;
+			border-radius: 8px;
+			font-size: 1em;
+			transition: border 0.3s ease, box-shadow 0.3s ease;
+		}	
+
+		.contact-form input:focus,
+		.contact-form select:focus,
+		.contact-form textarea:focus {
+			outline: none;
+			border: 2px solid #9b59b6;
+			box-shadow: 0 0 10px rgba(155, 89, 182, 0.7);
+		}
+
+		.contact-form button {
+			display: inline-block;
+			padding: 15px 30px;
+			font-size: 1.2rem;
+			font-weight: bold;
+			color: #fff;
+			text-decoration: none;
+			border-radius: 10px;
+			border: none;
+			background: linear-gradient(135deg, #00c6ff, #0072ff);
+			box-shadow: 0 4px 15px rgba(0, 114, 255, 0.4);
+			transition: transform 0.2s ease, box-shadow 0.2s ease;
+			position: relative;
+			z-index: 2;
+		}
+		.contact-form button:hover {
+			transform: translateY(-3px);
+			box-shadow: 0 6px 20px rgba(0, 114, 255, 0.6);
+		}
+
+		@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+    </style>
+
+</head>
+
+<body>
+
+<style>
+  /* ===== Rain Container (Header version) ===== */
+  .rain-header {
+    position: relative;
+    height: 300px;             /* header height, adjust as needed */
+    background: transparent;   /* keep your header background visible */
+    overflow: hidden;
+    color: #fff;
+  }
+
+  .rain-header .header-content {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    place-items: center;
+    height: 100%;
+    text-align: center;
+    font-family: system-ui, sans-serif;
+    padding: 1rem;
+  }
+
+  /* ===== Rain Drops ===== */
+  .rain-drop {
+    position: absolute;
+    top: -20px;
+    width: 2px;
+    height: 15px;
+    background: rgba(255,255,255,0.6);
+    animation: fall linear infinite;
+  }
+
+  @keyframes fall {
+    to {
+      transform: translateY(350px); /* slightly larger for header */
+    }
+  }
+
+  /* ===== Lightning Flash ===== */
+  .lightning {
+    position: absolute;
+    inset: 0;
+    background: rgba(255,255,255,0.6);
+    z-index: 1;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  @keyframes flash {
+    0%, 100% { opacity: 0; }
+    5% { opacity: 1; }
+    10% { opacity: 0; }
+    15% { opacity: 1; }
+    20% { opacity: 0; }
+  }
+</style>
+
+<header class="rain-header">
+  <div class="lightning"></div>
+</header>
+
+<script>
+  // Generate raindrops dynamically
+  const header = document.querySelector('.rain-header');
+  const dropCount = 80; // adjust density
+
+  for (let i = 0; i < dropCount; i++) {
+    const drop = document.createElement('div');
+    drop.classList.add('rain-drop');
+    drop.style.left = Math.random() * 100 + '%';
+    drop.style.animationDuration = (0.8 + Math.random() * 0.7) + 's';
+    drop.style.animationDelay = Math.random() * 2 + 's';
+    header.appendChild(drop);
+  }
+
+  // Thunder effect (random intervals)
+  const lightning = document.querySelector('.rain-header .lightning');
+  function thunder() {
+    lightning.style.animation = 'flash 1.5s ease';
+    setTimeout(() => {
+      lightning.style.animation = '';
+    }, 1500);
+    setTimeout(thunder, 4000 + Math.random() * 6000); // next thunder
+  }
+  setTimeout(thunder, 3000);
+</script>
+
+
+    <h1 class="main-title">Graphic Monthly Packages</h1>
+    <section class="package-section">
+
+        <div class="package-card" data-aos="fade-up">
+            <h3>Starter Booster</h3>
+            <span class="price">₹999<span class="purple-text"> / Month</span></span>
+            <div class="card-details">
+                <ul>
+                    <li>Weekly 3 Social Media Posts</li>
+                    <li>Delivery: within 24 hr</li>
+                    <li>Free Trial: 1 design</li>
+                    <li>Minor edits until satisfied</li>
+                    <li>WhatsApp & Call Support</li>
+                    <li>Urgent Delivery: ₹79</li>
+                    <li>Referral: ₹399 OFF on renewal</li>
+                    <li>Content Calendar: 3 posts</li>
+                    <li>Loyalty Rewards</li>
+                    <li>Google Drive Access (all purchased designs)</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="package-card" data-aos="fade-up">
+            <h3>Brand Builder</h3>
+            <span class="price">₹1,499<span class="purple-text"> / Month</span></span>
+            <div class="card-details">
+                <ul>
+                    <li>Weekly 6 Social Media Posts</li>
+                    <li>Delivery: within 12 hr</li>
+                    <li>Free Trial: 2 designs</li>
+                    <li>Minor edits until satisfied</li>
+                    <li>WhatsApp & Call Support</li>
+                    <li>Urgent Delivery: ₹49</li>
+                    <li>Referral: ₹499 OFF on renewal</li>
+                    <li>Content Calendar: 6 posts</li>
+                    <li>Loyalty Rewards</li>
+                    <li>Google Drive Access (all purchased designs)</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="package-card" data-aos="fade-up">
+            <h3>Impact Pro</h3>
+            <span class="price">₹1,999<span class="purple-text"> / Month</span></span>
+            <div class="card-details">
+                <ul>
+                    <li>Weekly 9 Social Media Posts</li>
+                    <li>Delivery: within 6 hr</li>
+                    <li>Free Trial: 3 designs</li>
+                    <li>Minor edits until satisfied</li>
+                    <li>WhatsApp & Call Support</li>
+                    <li>Urgent Delivery: ₹0 (Free)</li>
+                    <li>Referral: ₹699 OFF on renewal</li>
+                    <li>Content Calendar: 9 posts</li>
+                    <li>Loyalty Rewards</li>
+                    <li>Google Drive Access (all purchased designs)</li>
+                </ul>
+            </div>
+        </div>
+
+    </section>
+
+    <h1 class="main-title">Website Packages</h1>
+    <section class="package-section">
+
+        <div class="package-card" data-aos="fade-up">
+            <h3>LaunchPad</h3>
+            <span class="price">₹2,999 <span class="purple-text">(One Time)</span></span>
+            <div class="card-details">
+                <ul>
+                    <li>1–3 Pages (Home, About, Services, Contact)</li>
+                    <li>Responsive design (mobile + desktop)</li>
+                    <li>Contact form + Google Maps</li>
+                    <li>Basic on-page SEO (title, meta)</li>
+                    <li>SSL setup guidance</li>
+                    <li>Revisions: 2 rounds</li>
+                    <li>Delivery: 4–6 business days</li>
+                    <li>Deliverables: HTML/WordPress files, login, guide</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="package-card" data-aos="fade-up">
+            <h3>DynamicSphere</h3>
+            <span class="price">₹4,999 <span class="purple-text">(One Time)</span></span>
+            <div class="card-details">
+                <ul>
+                    <li>4–6 Pages (Home, About, Services, Portfolio/Blog, Contact)</li>
+                    <li>Custom Animations (hover, sliders, transitions)</li>
+                    <li>WordPress CMS + Blog Setup</li>
+                    <li>On-page SEO Optimization</li>
+                    <li>Contact Form + Newsletter Signup</li>
+                    <li>30-Minute Training</li>
+                    <li>Revisions: 3 rounds</li>
+                    <li>Delivery: 8–10 business days</li>
+                    <li>Deliverables: Full site, admin access, 30-day support</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="package-card" data-aos="fade-up">
+            <h3>InfinityCart</h3>
+            <span class="price">₹7,499 <span class="purple-text">(One Time)</span></span>
+            <div class="card-details">
+                <ul>
+                    <li>8–10 Pages OR Basic E-Commerce Setup</li>
+                    <li>Up to 30 Product Listings</li>
+                    <li>Payment Gateway Integration</li>
+                    <li>Product Categories + Shopping Cart</li>
+                    <li>Custom Animated Header/Footer</li>
+                    <li>Speed Optimization + SEO Basics</li>
+                    <li>1-Hour Training (upload, orders)</li>
+                    <li>Revisions: 4 rounds</li>
+                    <li>Delivery: 12–15 business days</li>
+                    <li>Deliverables: Complete store, CSV guide, 30-day support</li>
+                </ul>
+            </div>
+        </div>
+
+    </section>
+
+<style>
+  .micro-section {
+    background: #1e1b4b;
+    color: #fff;
+	padding:20px;
+    text-align: center;
+    width:100%;
+	min-height:20vh;
+	display: flex;
+	flex-direction: column;     
+	justify-content: center;    
+	align-items: center;        
+	text-align: center;         
+    border-radius: 16px;
+    margin: 30px auto;
+    max-width: 1200px;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.3);
+  }
+  .micro-section h2 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 15px;
+  }
+  .micro-section p {
+    font-size: 18px;
+    margin-bottom: 25px;
+    line-height: 1.6;
+  }
+  .micro-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+  }
+  .micro-buttons a {
+    display: inline-block;
+    padding: 14px 24px;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: 0.3s ease;
+  }
+  .form-btn {
+    background: #7c3aed;
+    color: #fff;
+  }
+  .form-btn:hover {
+    background: #5b21b6;
+  }
+  .wa-btn {
+    background: #25d366;
+    color: #fff;
+  }
+  .wa-btn:hover {
+    background: #1da851;
+  }
+</style>
+
+<section class="micro-section">
+  <h2>Not sure which package is right for you?</h2>
+  <p>
+    Don’t worry! You can either fill out the form below, or contact us directly on WhatsApp for instant support.
+  </p>
+  <div class="micro-buttons">
+    <!-- Scroll to Contact Form -->
+    <a href="#contact-form-section" class="form-btn">🖊 Fill The Form Below</a>
+
+    <!-- WhatsApp Chat -->
+    <a href="https://wa.me/919474647617?text=Hi!%20I%20want%20to%20know%20more%20about%20your%20packages." target="_blank" class="wa-btn">
+      💬 Chat on WhatsApp
+    </a>
+  </div>
+</section>
+	
+	<section class="contact-form-section" data-aos="fade-up">
+    <form action="https://formsubmit.co/hello.grafixbox@gmail.com" method="POST" class="contact-form">
+        <input type="hidden" name="_captcha" value="false">
+
+        <div class="input-group">
+            <label for="name">Your Name <span style="color: #ff6b6b;">*</span></label>
+            <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+        </div>
+
+        <div class="input-group">
+            <label for="email">Your Email <span style="color: #ff6b6b;">*</span></label>
+            <input type="email" id="email" name="email" placeholder="Enter your email address" required>
+        </div>
+
+        <div class="input-group">
+            <label for="phone">Phone Number <span style="color: #ff6b6b;">*</span></label>
+            <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
+        </div>
+
+        <div class="input-group">
+            <label for="interest">Your Area of Interest <span style="color: #ff6b6b;">*</span></label>
+            <select id="interest" name="interest" required>
+                <option value="">Select an option</option>
+                <option value="Website Development">Website Development</option>
+                <option value="Video & Reels">Video & Reels</option>
+                <option value="Graphic Designing">Graphic Designing</option>
+				<option value="Other">Other</option>
+            </select>
+        </div>
+
+        <div class="input-group">
+            <label for="message">Your Message (Optional)</label>
+            <textarea id="message" name="message" placeholder="Write your message here..." rows="6"></textarea>
+        </div>
+
+        <div class="input-group">
+            <label for="company">Company Name (Optional)</label>
+            <input type="text" id="company" name="company" placeholder="Your Company Name">
+        </div>
+
+        <button type="submit">Submit</button>
+    </form>
+</section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+
+<!-- 🔽 Footer Section -->
+<div class="footer-section">
+  <a href="index.html" class="home-btn">Back to Home</a>
+  <div class="wave-container">
+    
+  </div>
+</div>
+<style>
+.footer-section {
+  text-align: center;
+  margin-top: 50px;
+  position: relative;
+  padding-bottom: 0;
+}
+
+.home-btn {
+  display: inline-block;
+  padding: 15px 30px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 50px;
+  background: linear-gradient(135deg, #ff0000, #cc0000);
+  box-shadow: 0 4px 15px rgba(255, 0, 0, 0.4);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  position: relative;
+  z-index: 2;
+}
+
+.home-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(255, 0, 0, 0.6);
+}
+
+</style>
+</body>
+
+</html>

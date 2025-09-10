@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="bn">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Grafixবক্স — Career</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg-dark: #07070b;
+      --accent-from: #7c3aed;
+      --accent-to: #a78bfa;
+      --text: #e6e6ef;
+      --muted-text: #bfc4d6;
+      --card-radius: 16px;
+      --glass-border: rgba(255,255,255,0.04);
+      --shadow: 0 10px 30px rgba(5,6,12,0.6);
+    }
+
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:'Poppins',sans-serif;
+      background: linear-gradient(180deg, var(--bg-dark) 0%, #050514 70%);
+      color:var(--text);
+      overflow-x:hidden;
+    }
+
+    .wrap{min-height:100vh;display:flex;flex-direction:column;align-items:center;gap:48px;padding:48px 24px 120px;}
+
+    .hero{
+      width:100%;max-width:1100px;
+      background: linear-gradient(90deg, rgba(124,58,237,0.14), rgba(167,139,250,0.08));
+      border-radius:20px;padding:40px 36px;
+      box-shadow:var(--shadow);
+      border:1px solid rgba(255,255,255,0.02);
+      position:relative;overflow:hidden;
+    }
+    .hero h1{margin:0;font-size:34px;font-weight:800;}
+    .hero p{margin:12px 0 0;color:var(--muted-text);font-size:15px;}
+
+    .pill-btn{
+      display:inline-block;
+      margin-top:18px;
+      background: linear-gradient(90deg,var(--accent-from),var(--accent-to));
+      padding:12px 22px;
+      border-radius:999px;
+      font-weight:600;
+      cursor:pointer;
+      box-shadow:0 8px 24px rgba(124,58,237,0.18);
+      transition:transform .25s ease;
+    }
+    .pill-btn:hover{transform:scale(1.05);}
+
+    .jobs-grid{
+      width:100%;max-width:1100px;
+      display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+      gap:22px;
+    }
+
+    .job-card{
+      background: rgba(255,255,255,0.03);
+      border:1px solid var(--glass-border);
+      border-radius:var(--card-radius);
+      padding:18px;
+      box-shadow:0 6px 20px rgba(3,5,15,0.6);
+      opacity:0;transform:translateY(20px);
+      transition:opacity .5s ease, transform .5s ease;
+    }
+    .job-card.visible{opacity:1;transform:translateY(0);}
+    .job-title{font-weight:700;font-size:18px;margin:0 0 6px;}
+    .job-status{font-size:13px;color:var(--muted-text);}
+    .salary{margin-top:8px;font-weight:600;font-size:14px;}
+    .skills{margin-top:6px;color:var(--muted-text);font-size:13px;}
+
+    /* Breeze Animation */
+    .footer{position:relative;width:100%;height:140px;margin-top:24px;}
+    .breeze{position:absolute;left:0;right:0;bottom:0;height:140px;pointer-events:none;}
+    .drift{position:absolute;bottom:0;filter:blur(10px);opacity:0.15;border-radius:999px;}
+    .one{left:5%;width:420px;height:80px;background:linear-gradient(90deg,rgba(167,139,250,0.18),rgba(124,58,237,0.10));animation: driftLeft 14s linear infinite;}
+    .two{left:40%;width:300px;height:60px;background:linear-gradient(90deg,rgba(255,183,77,0.08),rgba(124,58,237,0.08));animation: driftRight 11s linear infinite;}
+    .three{left:70%;width:480px;height:90px;background:linear-gradient(90deg,rgba(167,139,250,0.12),rgba(99,102,241,0.06));animation: driftLeft 18s linear infinite;}
+    @keyframes driftLeft{0%{transform:translateX(-40px);}50%{transform:translateX(40px);}100%{transform:translateX(-40px);}}
+    @keyframes driftRight{0%{transform:translateX(40px);}50%{transform:translateX(-40px);}100%{transform:translateX(40px);}}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="hero">
+      <h1>Join Our Creative Team</h1>
+      <p>We’re always looking for passionate and creative minds to grow with Grafixবক্স.</p>
+      <div class="pill-btn" id="showBtn">Open Positions</div>
+    </header>
+
+<div class="btn-wrap">
+  <a href="index.html" class="back-btn">Back to Home</a>
+</div>
+
+<style>
+  .btn-wrap{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    margin:40px 0 40px; /* উপরে-নিচে সমান গ্যাপ থাকবে */
+  }
+
+  .back-btn{
+    display:inline-block;
+    padding:14px 30px;
+    background:linear-gradient(90deg,#ff3b3b,#ff6a3d);
+    color:#fff;
+    font-weight:600;
+    border:none;
+    border-radius:999px;
+    cursor:pointer;
+    box-shadow:0 6px 20px rgba(255,0,0,0.4);
+    text-decoration:none;
+    transition:transform .25s ease, box-shadow .25s ease;
+  }
+  .back-btn:hover{
+    transform:scale(1.05);
+    box-shadow:0 8px 26px rgba(255,0,0,0.55);
+  }
+</style>
+
+    <section class="jobs-grid" id="jobsGrid"></section>
+
+    <footer class="footer">
+      <div class="breeze">
+        <div class="drift one"></div>
+        <div class="drift two"></div>
+        <div class="drift three"></div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    const jobs=[
+      {title:"Graphic Designer",status:"Currently Closed",salary:"₹10,000 – ₹20,000 / month",skills:"Photoshop, Illustrator, Branding"},
+      {title:"Video Editor",status:"Currently Closed",salary:"₹12,000 – ₹25,000 / month",skills:"Premiere Pro, After Effects, Motion Graphics"},
+      {title:"Designing Consultant",status:"Currently Closed",salary:"₹20,000 – ₹40,000 / month",skills:"Client Communication, Design Strategy"},
+      {title:"Billing Manager",status:"Currently Closed",salary:"₹18,000 – ₹30,000 / month",skills:"Invoicing, Financial Reports, Client Handling"}
+    ];
+
+    const jobsGrid=document.getElementById('jobsGrid');
+    const btn=document.getElementById('showBtn');
+
+    btn.addEventListener('click',()=>{
+      jobs.forEach((job,i)=>{
+        const card=document.createElement('div');
+        card.className='job-card';
+        card.innerHTML=`
+          <h3 class="job-title">${job.title}</h3>
+          <div class="job-status">${job.status}</div>
+          <div class="salary">${job.salary}</div>
+          <div class="skills"><strong>Skills:</strong> ${job.skills}</div>
+        `;
+        jobsGrid.appendChild(card);
+        setTimeout(()=>card.classList.add('visible'),100*i);
+      });
+      btn.style.display='none';
+    });
+  </script>
+</body>
+
+
+
+</html>

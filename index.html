@@ -1,0 +1,662 @@
+<!doctype html>
+<html lang="bn">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Grafixবক্স — Unboxing Creativity</title>
+
+  
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    :root{
+      --bg-1: #070916;   
+      --bg-2: #0d1220;   
+      --accent: #7c3aed; 
+      --accent-glow: rgba(124,58,237,0.22);
+      --card-bg: rgba(255,255,255,0.03);
+      --muted: rgba(230,238,248,0.65);
+    }
+
+    body{
+      font-family: 'Poppins', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: radial-gradient(1200px 500px at 8% 8%, rgba(124,58,237,0.04), transparent 8%),
+                  linear-gradient(180deg, var(--bg-1) 0%, var(--bg-2) 60%);
+      color: #e6eef8;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      scroll-behavior: smooth;
+    }
+
+    /* circular logo placeholder */
+    .logo-circle{
+      width: 44px;
+      height: 44px;
+      border-radius: 9999px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+      border: 1px solid rgba(255,255,255,0.06);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight:700;
+      color:var(--muted);
+      font-size:14px;
+    }
+
+    /* glass card / service card */
+    .card {
+      background: var(--card-bg);
+      border: 1px solid rgba(255,255,255,0.04);
+      border-radius: 12px;
+      transition: transform .28s cubic-bezier(.2,.9,.2,1), box-shadow .28s;
+    }
+    .card:hover {
+      transform: translateY(-8px) scale(1.01);
+      box-shadow: 0 10px 30px rgba(2,6,23,0.6), 0 0 30px rgba(124,58,237,0.06);
+    }
+
+    /* CTA button with purple glow */
+    .cta-btn {
+      background: var(--accent);
+      color: white;
+      padding: .7rem 1.1rem;
+      border-radius: 999px;
+      display:inline-flex;
+      align-items:center;
+      gap:.6rem;
+      font-weight:600;
+      box-shadow: 0 6px 20px rgba(124,58,237,0.08);
+      transition: transform .18s ease, box-shadow .18s ease;
+    }
+    .cta-btn:hover{
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 12px 40px var(--accent-glow);
+    }
+
+    /* nav whatsapp button special */
+    .nav-wa {
+      background: linear-gradient(180deg, rgba(124,58,237,1), rgba(92,43,173,1));
+      color: white;
+      padding: .45rem .9rem;
+      border-radius: 999px;
+      font-weight:600;
+      box-shadow: 0 6px 26px rgba(124,58,237,0.12);
+      transition: transform .18s, box-shadow .18s;
+    }
+    .nav-wa:hover{
+      transform: translateY(-3px);
+      box-shadow: 0 14px 40px var(--accent-glow);
+    }
+
+    /* small emoji badge */
+    .emoji-badge{
+      width:46px;
+      height:46px;
+      border-radius:10px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:20px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
+      border: 1px solid rgba(255,255,255,0.04);
+      transition: transform .18s;
+    }
+    .card:hover .emoji-badge{
+      transform: translateY(-6px) rotate(-6deg);
+    }
+
+    /* thin/pretty section heading */
+    .section-title{
+      letter-spacing: -0.4px;
+      font-weight:600;
+    }
+
+    /* animated underline for heading (little fun) */
+    .fun-underline{
+      position: relative;
+      display: inline-block;
+    }
+    .fun-underline::after{
+      content:'';
+      position:absolute;
+      left:0;
+      bottom:-8px;
+      height:6px;
+      width:36%;
+      border-radius:4px;
+      background: linear-gradient(90deg, rgba(124,58,237,0.9), rgba(124,58,237,0.35));
+      transform-origin:left center;
+      transform: scaleX(0);
+      transition: transform .45s cubic-bezier(.2,.9,.2,1);
+      opacity:0.95;
+    }
+    .fun-underline:hover::after{ transform: scaleX(1); }
+
+    /* responsive adjustments */
+    @media (max-width:640px){
+      .logo-circle{ width:40px; height:40px; font-size:13px; }
+      .emoji-badge{ width:42px; height:42px; font-size:18px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="fixed w-full z-40 top-0">
+    <div class="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
+      <div class="flex items-center gap-4">
+        
+        <div class="logo-circle" id="logo-placeholder" title="Replace with your logo">
+		<img src="logo.jpg" alt="Logo" style="width: 100%; height: 100%; object-fit: cover;">
+		</div>
+        <div class="hidden md:block text-sm text-gray-300">
+          
+          <span class="text-gray-400">Grafixবক্স</span>
+        </div>
+      </div>
+	<style>
+	.logo-circle {
+    width: 40px;
+    height: 40px;
+    border-radius: 30%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+</style>
+      <nav class="hidden md:flex items-center gap-6 text-sm">
+        <a href="#home" class="text-gray-300 hover:text-white transition">Home</a>
+        <a href="#services" class="text-gray-300 hover:text-white transition">Services</a>
+		<a href="#terms" class="text-gray-300 hover:text-white transition">T&C</a>
+        <a href="Portfolio.html" class="text-gray-300 hover:text-white transition">Portfolio</a> 
+        <a href="Pricing.html" class="text-gray-300 hover:text-white transition">Pricing</a>
+        <a href="#contact" class="text-gray-300 hover:text-white transition">Contact</a>
+		<a href="Aboutus.html" class="text-gray-300 hover:text-white transition">About Us</a>
+		<a href="career.html" class="text-gray-300 hover:text-white transition">Career</a>
+        <a href="https://wa.me/919474647617" target="_blank" class="nav-wa ml-3">WhatsApp</a>
+      </nav>
+
+      
+      <div class="md:hidden flex items-center">
+        <button id="mobileBtn" class="p-2 rounded-md bg-white/3">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8h16M4 16h16"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    
+    <div id="mobileMenu" class="hidden md:hidden px-4 pb-4">
+      <div class="max-w-7xl mx-auto flex flex-col gap-3">
+        <a href="#home" class="text-gray-300">Home</a>
+        <a href="#services" class="text-gray-300">Services</a>
+        <a href="Portfolio.html" class="text-gray-300">Portfolio</a>
+        <a href="#pricing" class="text-gray-300">Pricing</a>
+        <a href="#contact" class="text-gray-300">Contact</a>
+        <a href="https://wa.me/919474647617" class="text-white inline-block mt-2 py-2 px-4 rounded-full" style="background:var(--accent)">WhatsApp</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="pt-24">
+    
+    <section id="home" class="max-w-7xl mx-auto px-4 py-20">
+      <div class="grid md:grid-cols-2 gap-8 items-center">
+        <div>
+          <h1 class="text-4xl md:text-6xl font-extrabold leading-tight text-white">
+            Unboxing Creativity
+            <br>
+            <span class="relative inline-block mt-1">
+                <span class="text-purple-300">— Grafixবক্স</span>
+            </span>
+          </h1>
+
+          <p class="mt-6 text-lg text-gray-300 max-w-lg">
+            We help brands stand out with creative design, impactful visuals, and engaging social media content.<br><br> Fast Delivery • Minor Edit Untill Satisfied • Friendly Support
+          </p>
+
+          <div class="mt-8 flex flex-wrap gap-3 items-center">
+            <a href="https://wa.me/919474647617" target="_blank" class="cta-btn">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M21 11.5a8.5 8.5 0 1 1-16.99-2.8L3 3l5.6 1.3A8.51 8.51 0 0 1 21 11.5z"/></svg>
+              <span>Start Chat on WhatsApp</span>
+            </a>
+          </div>
+        </div>
+
+        
+        <div class="rounded-xl overflow-hidden card p-4">
+          
+          <div class="h-64 md:h-80 w-full bg-gradient-to-br from-[#0b1220] to-[#101427] flex items-center justify-center text-gray-500">
+            <div class="text-center">
+              
+              <div class="text-xs mt-2 text-gray-400"> <img src="hero.jpg" class="heroimg"> </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+	<style>
+	.heroimg {
+	border-radius: 12px;
+	width:100%;
+	height:auto;
+	}
+	</style>
+    
+    <section id="services" class="max-w-7xl mx-auto px-4 py-12">
+      <div class="text-center mb-10">
+        <h2 class="text-2xl md:text-3xl section-title text-white">🧾 What’s on Our Plate?</h2>
+        <p class="text-sm text-gray-400 mt-2 max-w-2xl mx-auto">A buffet of creativity — grab what your brand’s hungry for!!</p>
+      </div>
+
+      <div class="grid gap-6 sm:grid-cols-2 md:grid-cols-3">
+        
+        <div class="p-5 card">
+          <div class="flex items-start gap-4">
+            <div class="emoji-badge">🌟</div>
+            <div>
+              <h3 class="font-semibold text-white">Social Media Posters</h3>
+              <p class="text-sm text-gray-300 mt-2">Square/Custom size creatives for Facebook & Instagram. Starts at ₹49 (square) and ₹79 (custom).</p>
+            </div>
+          </div>
+        </div>
+
+        
+        <div class="p-5 card">
+          <div class="flex items-start gap-4">
+            <div class="emoji-badge">🎨</div>
+            <div>
+              <h3 class="font-semibold text-white">Branding & Identity</h3>
+              <p class="text-sm text-gray-300 mt-2">From logo to typography, complete brand visuals that reflect your business personality.</p>
+            </div>
+          </div>
+        </div>
+
+        
+        <div class="p-5 card">
+          <div class="flex items-start gap-4">
+            <div class="emoji-badge">🚀</div>
+            <div>
+              <h3 class="font-semibold text-white">Monthly Creative Packs</h3>
+              <p class="text-sm text-gray-300 mt-2">Ready-to-post designs, content calendar & ongoing creative support. Starting ₹999/month.</p>
+            </div>
+          </div>
+        </div>
+
+        
+        <div class="p-5 card">
+          <div class="flex items-start gap-4">
+            <div class="emoji-badge">📌</div>
+            <div>
+              <h3 class="font-semibold text-white">Facebook & Instagram Page Management</h3>
+              <p class="text-sm text-gray-300 mt-2">Complete page handling with posting, captions, and engagement support for consistent growth.</p>
+            </div>
+          </div>
+        </div>
+
+        
+        <div class="p-5 card">
+          <div class="flex items-start gap-4">
+            <div class="emoji-badge">🎬</div>
+            <div>
+              <h3 class="font-semibold text-white">Short Video Editing & Reels</h3>
+              <p class="text-sm text-gray-300 mt-2">Eye-catching reels and promo videos designed to boost your brand's social media presence.</p>
+            </div>
+          </div>
+        </div>
+
+        
+        <div class="p-5 card">
+          <div class="flex items-start gap-4">
+            <div class="emoji-badge">🌐</div>
+            <div>
+              <h3 class="font-semibold text-white">Website Design & Development</h3>
+              <p class="text-sm text-gray-300 mt-2">Modern, responsive website solutions — from design to full development and deployment.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+	
+	
+<section id="impact" class="py-16 text-white">
+  <div class="max-w-6xl mx-auto px-6 text-center">
+    <h2 class="text-3xl font-bold mb-4">📊 Our Creative Scoreboard</h2>
+    <p class="text-gray-400 mb-12">Wins, wows & wow-agains — straight from our design kitchen.</p>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-8">
+      
+      
+      <div class="group p-6 bg-[#12121a] rounded-2xl transition-all duration-300 shadow-lg hover:shadow-purple-600/40 hover:bg-[#1a1a25]">
+        <div class="text-5xl mb-3">🎨</div>
+        <h3 class="text-2xl font-semibold text-purple-400 counter" data-target="1128">0</h3>
+        <p class="text-gray-400">Social media posters delivered</p>
+      </div>
+
+      
+      <div class="group p-6 bg-[#12121a] rounded-2xl transition-all duration-300 shadow-lg hover:shadow-purple-600/40 hover:bg-[#1a1a25]">
+        <div class="text-5xl mb-3">💎</div>
+        <h3 class="text-2xl font-semibold text-purple-400 counter" data-target="129">0</h3>
+        <p class="text-gray-400">Branding projects completed</p>
+      </div>
+
+      
+      <div class="group p-6 bg-[#12121a] rounded-2xl transition-all duration-300 shadow-lg hover:shadow-purple-600/40 hover:bg-[#1a1a25]">
+        <div class="text-5xl mb-3">⭐</div>
+        <h3 class="text-2xl font-semibold text-purple-400 counter" data-target="97">0</h3>
+        <p class="text-gray-400">% Client satisfaction rate</p>
+      </div>
+
+      
+      <div class="group p-6 bg-[#12121a] rounded-2xl transition-all duration-300 shadow-lg hover:shadow-purple-600/40 hover:bg-[#1a1a25]">
+        <div class="text-5xl mb-3">📱</div>
+        <h3 class="text-2xl font-semibold text-purple-400 counter" data-target="3089">0</h3>
+        <p class="text-gray-400">Social media creatives designed</p>
+      </div>
+
+      
+      <div class="group p-6 bg-[#12121a] rounded-2xl transition-all duration-300 shadow-lg hover:shadow-purple-600/40 hover:bg-[#1a1a25]">
+        <div class="text-5xl mb-3">🤝</div>
+        <h3 class="text-2xl font-semibold text-purple-400 counter" data-target="156">0</h3>
+        <p class="text-gray-400">Happy clients in Nadia & West Bengal</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+
+<section id="terms" class="py-16 text-white">
+  <div class="max-w-6xl mx-auto px-6">
+    <h2 class="text-3xl font-bold text-center mb-8">🍿 Terms & Snacks</h2>
+    <p class="text-center text-gray-400 mb-10">Grab a popcorn and skim through the ground rules (we promise, it’s light reading).</p>
+
+    <div class="bg-[#12121a] rounded-2xl p-10 shadow-lg border border-purple-600/20">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-gray-300">
+        
+        <ul class="space-y-4">
+          <li>• Monthly packages or one-time poster designs only be covered as described.</li>
+          <li>• Delivery time: As per package (24h / 12h / 6h). Extra charge for urgent work.</li>
+          <li>• Revisions: Unlimited minor edits, separate charge for major changes.</li>
+          <li>• Free Trial: Starter 1, Brand Builder 2, Impact Pro 3 (preview only).</li>
+          <li>• Payment: Full payment in advance before starting service.</li>
+          <li>• Renewal Referral Discount: ₹399/₹499/₹699 applicable for next month only.</li>
+        </ul>
+
+        <ul class="space-y-4">
+          <li>• Communication via WhatsApp/Call/SMS is acceptable.</li>
+          <li>• Project Hold: If you stop midway, delivery won’t continue.</li>
+          <li>• Loyalty Rewards: Available under certain conditions.</li>
+          <li>• Force Majeure: Not responsible for uncontrollable delays.</li>
+          <li>• Portfolio Rights: Designs may be used in promotions.</li>
+          <li>• Deadline: Increases if feedback/content is late.</li>
+          <li>• Confidentiality: Client info will be kept private.</li>
+		  <li>• Cancellation: No refunds once work has begun.</li>
+        </ul>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Counter Animation Script -->
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const counters = document.querySelectorAll(".counter");
+    const speed = 100; // lower = faster
+
+    const animateCounters = () => {
+      counters.forEach(counter => {
+        const updateCount = () => {
+          const target = +counter.getAttribute("data-target");
+          const count = +counter.innerText;
+          const increment = target / speed;
+
+          if (count < target) {
+            counter.innerText = Math.ceil(count + increment);
+            setTimeout(updateCount, 40);
+          } else {
+            counter.innerText = target + (counter.getAttribute("data-target").includes("%") ? "%" : "");
+          }
+        };
+        updateCount();
+      });
+    };
+
+    // trigger only when section visible
+    const section = document.querySelector("#impact");
+    let triggered = false;
+
+    window.addEventListener("scroll", () => {
+      const rect = section.getBoundingClientRect();
+      if (!triggered && rect.top < window.innerHeight) {
+        animateCounters();
+        triggered = true;
+      }
+    });
+  });
+</script>
+<!-- CONTACT -->  <section id="contact" class="py-20">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="mb-10 text-center">
+        <h2 class="text-3xl md:text-4xl font-bold tracking-tight">🍕 Let’s Cook Some Designs Together</h2>
+        <p class="mt-3 text-zinc-600">You bring the ideas, we’ll bring the extra cheese.</p>
+      </div>
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="md:col-span-2 rounded-2xl border p-6 ">
+          <h3 class="text-lg font-semibold">Quick Contact</h3>
+          <p class="text-sm text-zinc-600 mt-1">Reach out on WhatsApp for fastest response.</p>
+          <div class="mt-4 flex flex-wrap gap-3">
+            <a id="waContact" href="https://wa.me/919474647617" class="rounded-xl px-5 py-3 bg-indigo-600 text-white font-medium shadow hover:bg-indigo-700">WhatsApp Now</a>
+            <a id="callLink" href="tel:+919474647617" class="rounded-xl px-5 py-3 bg-indigo-600 text-white font-medium shadow hover:bg-indigo-700">Call Us</a>
+            <a id="mailLink" href="mailto:hello.grafixbox@gmail.com" class="rounded-xl px-5 py-3 bg-indigo-600 text-white font-medium shadow hover:bg-indigo-700">Mail Us</a>
+          </div>
+          <div class="mt-6 grid sm:grid-cols-2 gap-4 text-sm">
+            <div class="flex items-start gap-2">Ranaghat, Nadia, West Bengal — 741201</div><br>
+            <div class="flex items-start gap-2">facebook Page : Grafixবক্স</div>
+            <div class="flex items-start gap-2">Instagram :grafixbox_digital</div>
+          </div>
+        </div>
+        <div class="rounded-2xl border p-6">
+          <h3 class="text-lg font-semibold">Why choose us?</h3>
+          <ul class="mt-3 space-y-2 text-sm">
+            <li>✓ Creative Design that speake for your Brand -  We don't just design, we create impact.</li>
+            <li>✓ Lightning-Fast Delivery – Get your designs within hours, not days.</li>
+            <li>✓ Minor edits until satisfied</li>
+            
+			<li>✓ Free Trial Designs – Try before you invest.</li>
+			<li>✓ Affordable Pricing, Premium Quality – Starting from just ₹49/-, professional results guaranteed.</li>
+			<li>✓ Trusted by Local Businesses in Ranaghat & Nadia – Growing brands choose us.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+	
+	<section class="faq-section">
+  <h2 class="faq-title">🧩 FAQ — The Missing Pieces</h2>
+
+  <div class="faq-item">
+    <div class="faq-question">
+      How long will it take to deliver my project?
+      <span class="arrow">&#9654;</span>
+    </div>
+    <div class="faq-answer">
+      Your delivery time will depend on the package you choose. We deliver most projects within that time frame, but if we receive feedback late, that time frame may increase. Most projects are delivered within 24 hours.
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">
+      Can I request revisions if I’m not satisfied?
+      <span class="arrow">&#9654;</span>
+    </div>
+    <div class="faq-answer">
+      Yes, we provide free minor revisions until you’re happy with the result.
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">
+      Do you provide a money-back guarantee?
+      <span class="arrow">&#9654;</span>
+    </div>
+    <div class="faq-answer">
+      No, we don't have a money back policy but You can try the free trial and only continue if you like it. Otherwise, don't.
+    </div>
+  </div>
+</section>
+
+<style>
+  .faq-section {
+    max-width: 65%;
+    margin: 40px auto;
+    padding: 20px;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    font-family: "Segoe UI", sans-serif;
+  }
+
+  .faq-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #ffffff;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  .faq-item {
+    border-bottom: 1px solid #e5e7eb;
+    padding: 15px 10px;
+    transition: background 0.3s ease;
+  }
+
+  .faq-question {
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #ffffff;
+  }
+
+  .faq-question:hover {
+    color: #ffd700;
+  }
+
+  .arrow {
+    transition: transform 0.3s ease;
+    font-size: 18px;
+    color: #ffd700;
+  }
+
+  .faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    font-size: 15px;
+    color: #ffffff;
+    line-height: 1.6;
+    padding: 0 5px;
+    transition: max-height 0.4s ease;
+  }
+
+  .faq-item.active .arrow {
+    transform: rotate(90deg);
+    color: #6b21a8;
+  }
+</style>
+
+<script>
+  const faqs = document.querySelectorAll(".faq-item");
+
+  faqs.forEach(item => {
+    const question = item.querySelector(".faq-question");
+    const answer = item.querySelector(".faq-answer");
+
+    question.addEventListener("click", () => {
+      if (item.classList.contains("active")) {
+        // Collapse
+        answer.style.maxHeight = null;
+        item.classList.remove("active");
+      } else {
+        // Close others
+        faqs.forEach(i => {
+          i.classList.remove("active");
+          i.querySelector(".faq-answer").style.maxHeight = null;
+        });
+        // Expand clicked
+        item.classList.add("active");
+        answer.style.maxHeight = answer.scrollHeight + "px";
+      }
+    });
+  });
+</script>
+	
+   <footer class="footer-snow">
+  <div class="footer-inner">
+    <p class="text-center text-gray-400 text-sm">
+  Crafted with ❤ by <span class="font-semibold text-white">Grafixবক্স</span> · Unboxing Creativity
+</p>
+  </div>
+  <div class="snow-area" id="snowArea" aria-hidden="true"></div>
+</footer>
+
+<style>
+.footer-snow{position:relative;background:#0b1220;color:#fff;overflow:hidden}
+.footer-snow .footer-inner{max-width:1100px;margin:0 auto;padding:40px 16px 220px}
+.snow-area{position:absolute;left:0;right:0;bottom:0;height:220px;pointer-events:none}
+.flake{
+  position:absolute;top:-10px;width:6px;height:6px;border-radius:50%;
+  background:rgba(255,255,255,.9);opacity:.9;filter:blur(.3px);
+  animation:fall var(--dur,8s) linear var(--delay,0s) infinite
+}
+@keyframes fall{
+  to{ transform:translateY(240px) translateX(var(--wind, 30px)); opacity:.2 }
+}
+</style>
+
+<script>
+(function makeSnow(){
+  const area = document.getElementById('snowArea');
+  const count = 80; // কতগুলো ফ্লেক
+  for (let i=0;i<count;i++){
+    const f = document.createElement('i');
+    f.className = 'flake';
+    f.style.left = Math.random()*100 + '%';
+    f.style.width = f.style.height = (Math.random()*3 + 2) + 'px';
+    f.style.setProperty('--dur', (6 + Math.random()*6) + 's');
+    f.style.setProperty('--delay', (Math.random()*6) + 's');
+    f.style.setProperty('--wind', (Math.random()*80 - 40) + 'px');
+    area.appendChild(f);
+  }
+})();
+</script>
+  </main>
+  <script>
+    // Mobile menu toggle
+    document.getElementById('mobileBtn').addEventListener('click', () => {
+      const m = document.getElementById('mobileMenu');
+      m.classList.toggle('hidden');
+    });
+
+    // Small little "fun" animation: when hovering section title, underline animates (CSS handles it)
+    // No extra JS required for that.
+
+    // Accessibility: close mobile menu on outside click (simple)
+    document.addEventListener('click', function(e){
+      const menu = document.getElementById('mobileMenu');
+      const btn = document.getElementById('mobileBtn');
+      if(!menu.contains(e.target) && !btn.contains(e.target) && !menu.classList.contains('hidden')){
+        menu.classList.add('hidden');
+      }
+    });
+  </script>
+</body>
+</html>

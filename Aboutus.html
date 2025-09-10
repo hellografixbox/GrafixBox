@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us - Grafixবক্স</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #140f23;
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    /* Falling leaves container */
+    .falling {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .leaf {
+      position: absolute;
+      top: -20px;
+      background: pink;
+      border-radius: 50% 50% 50% 50%;
+      opacity: 0.9;
+      animation: fall linear forwards;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(-20px) translateX(0) rotate(0deg);
+      }
+      50% {
+        transform: translateY(50vh) translateX(30px) rotate(180deg);
+      }
+      100% {
+        transform: translateY(110vh) translateX(-30px) rotate(360deg);
+      }
+    }
+
+
+    .content {
+      position: relative;
+      z-index: 2;
+      max-width: 800px;
+      margin: 80px auto;
+      padding: 0 20px;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 30px;
+      border-radius: 16px;
+      margin-bottom: 30px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(10px);
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    .card h2 {
+      font-size: 1.8rem;
+      margin-bottom: 15px;
+      color: #fff;
+    }
+
+    .card p {
+      font-size: 1rem;
+      color: #ccc;
+      line-height: 1.6;
+    }
+
+    .back-btn {
+      display: inline-block;
+      padding: 14px 30px;
+      background: linear-gradient(90deg, #ff3b3b, #ff6a3d);
+      color: #fff;
+      font-weight: 600;
+      border: none;
+      border-radius: 999px;
+      cursor: pointer;
+      box-shadow: 0 6px 20px rgba(255, 0, 0, 0.4);
+      text-decoration: none;
+      transition: transform .25s ease, box-shadow .25s ease;
+      margin: 40px auto;
+    }
+
+    .back-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 26px rgba(255, 0, 0, 0.55);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Falling leaves -->
+  <div class="falling"></div>
+
+  <div class="content">
+    <div class="card">
+      <h2>Our Story</h2>
+      <p>
+        Every great journey begins with a small step. The story of our agency began in the same way—with the effort of a single individual. In the beginning, there was no large team, no vast resources. There was only determination, creative thought, and a dream. <br><br>
+        The founder, working entirely alone, laid the foundation—handling the first few projects, designing the initial works, and creating the very framework of the agency. Slowly, word of the quality, dedication, and passion spread. Soon, others joined this journey, bringing in their own skills and energy. <br><br>
+        Today, we stand as a complete creative agency, powered by a team of talented designers, creative thinkers, and technical experts. And yet, behind all of it remains the mysterious figure of the founder—who chooses to stay hidden from the spotlight, but whose vision lives on in every piece of work we deliver. <br><br>
+        In just two years, we have left our mark across West Bengal, and are now reaching beyond borders. For us, design is not merely a visual—it is a story, a message, an experience that makes a brand come alive.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>Our Vision</h2>
+      <p>
+        To elevate every brand through creativity and innovation, helping them stand out in a world full of noise.
+      </p>
+    </div>
+
+    <div style="text-align:center;">
+      <a href="index.html" class="back-btn">Back to Home</a>
+    </div>
+  </div>
+
+  <script>
+    const fallingContainer = document.querySelector('.falling');
+
+    function createLeaf() {
+      const leaf = document.createElement('div');
+      leaf.classList.add('leaf');
+
+      // Random position
+      leaf.style.left = Math.random() * 100 + 'vw';
+
+      // Random color
+      const colors = ['#ffb6c1', '#ffffff', '#ff4d4d'];
+      leaf.style.background = colors[Math.floor(Math.random() * colors.length)];
+
+      // Random size
+      const w = 15 + Math.random() * 15;
+      const h = 10 + Math.random() * 10;
+      leaf.style.width = w + 'px';
+      leaf.style.height = h + 'px';
+
+      // Random duration
+      const duration = 4 + Math.random() * 5;
+      leaf.style.animationDuration = duration + 's';
+
+      fallingContainer.appendChild(leaf);
+
+      setTimeout(() => leaf.remove(), duration * 1000);
+    }
+
+    setInterval(createLeaf, 300);
+  </script>
+
+
+</body>
+</html>

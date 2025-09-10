@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Animated Event Calendar</title>
+<style>
+  :root {
+    --bg: #0a0f1d;
+    --card: #101a30;
+    --accent: #60a5fa;
+    --accent2: #22c55e;
+    --muted: #a1acc9;
+    font-family: "Poppins", sans-serif;
+  }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: #e6eef8;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    padding: 20px;
+    overflow: hidden;
+  }
+
+  /* Falling stars background */
+  canvas#stars {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: -1;
+  }
+
+  .calendar {
+    background: var(--card);
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 10px 50px rgba(0,0,0,.7);
+    width: min(100%, 900px);
+    animation: fadeIn 1s ease;
+  }
+  @keyframes fadeIn {
+    from {opacity: 0; transform: translateY(30px) scale(.9);}
+    to {opacity: 1; transform: translateY(0) scale(1);}
+  }
+  .month-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+  .month-header h2 {
+    margin: 0;
+    font-size: 24px;
+    text-align: center;
+    flex: 1;
+    animation: glowText 2s infinite alternate;
+  }
+  @keyframes glowText {
+    from {text-shadow: 0 0 5px var(--accent);}
+    to {text-shadow: 0 0 20px var(--accent2);}
+  }
+  .btn {
+    background: var(--accent);
+    border: none;
+    color: #fff;
+    padding: 10px 18px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 14px;
+    transition: transform .3s, background .3s, box-shadow .3s;
+    box-shadow: 0 0 10px rgba(96,165,250,.6);
+  }
+  .btn:hover {
+    transform: scale(1.15) rotate(-3deg);
+    background: var(--accent2);
+    box-shadow: 0 0 20px rgba(34,197,94,.8);
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 8px;
+    margin-top: 10px;
+  }
+  .day-name {
+    text-align: center;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--muted);
+    padding-bottom: 4px;
+  }
+  .cell {
+    background: rgba(255,255,255,0.05);
+    border-radius: 12px;
+    padding: 6px;
+    min-height: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    font-size: 13px;
+    transition: .25s;
+    opacity: 0;
+    animation: popIn .6s forwards;
+  }
+  @keyframes popIn {
+    from {opacity:0; transform:scale(.7) rotate(-5deg);}
+    to {opacity:1; transform:scale(1) rotate(0);}
+  }
+  .cell:hover {
+    background: rgba(255,255,255,0.15);
+    transform: scale(1.08);
+    box-shadow: 0 6px 20px rgba(0,0,0,.6), 0 0 15px var(--accent);
+  }
+  .date-num {
+    font-weight: 700;
+    margin-bottom: 4px;
+    font-size: 15px;
+  }
+  .today {
+    border: 2px solid var(--accent2);
+    box-shadow: 0 0 15px var(--accent2);
+  }
+  .event {
+    background: rgba(96,165,250,0.25);
+    border-left: 3px solid var(--accent);
+    border-radius: 8px;
+    padding: 3px 6px;
+    margin-top: 4px;
+    font-size: 12px;
+    line-height: 1.3;
+    animation: slideIn .5s ease;
+  }
+  @keyframes slideIn {
+    from {opacity:0; transform: translateX(-10px);}
+    to {opacity:1; transform: translateX(0);}
+  }
+</style>
+</head>
+<body>
+
+<canvas id="stars"></canvas>
+
+<div class="calendar">
+  <div class="month-header">
+    <button class="btn" onclick="prevMonth()">⏮ Prev</button>
+    <h2 id="monthYear"></h2>
+    <button class="btn" onclick="nextMonth()">Next ⏭</button>
+  </div>
+  <div class="grid" id="weekdays"></div>
+  <div class="grid" id="calendarGrid"></div>
+</div>
+
+<script>
+  /* Events Data */
+  const events = [
+    // September 2025
+    { date:"2025-09-09", time:"9:30 AM", title:"GraphicsBox Website Design Starter Pack 🚀" },
+    { date:"2025-09-11", time:"6:30 PM", title:"Why choose us? Digital Marketing 10x 📈" },
+    { date:"2025-09-13", time:"9:30 AM", title:"Top 3 Poster Designs ✨" },
+    { date:"2025-09-17", time:"", title:"Festival: Vishwakarma Puja 🛠" },
+    { date:"2025-09-18", time:"6:30 PM", title:"Design = Brand Value 💡" },
+    { date:"2025-09-20", time:"9:30 AM", title:"Logo + Website UI Demo 🎨" },
+    { date:"2025-09-21", time:"", title:"Festival: Mahalaya 🙏" },
+    { date:"2025-09-23", time:"9:30 AM", title:"Social Media Management 📱" },
+    { date:"2025-09-25", time:"6:30 PM", title:"Creative + Affordable 🚀" },
+    { date:"2025-09-27", time:"9:30 AM", title:"5 creative designs ✨" },
+    { date:"2025-09-29", time:"", title:"Festival: Durga Saptami 🌸" },
+    { date:"2025-09-30", time:"9:30 AM", title:"Durga Ashtami Offer 🎉 – 10% OFF" },
+
+    // August 2025
+    { date:"2025-08-15", time:"10:00 AM", title:"Independence Day 🇮🇳" },
+    { date:"2025-08-20", time:"4:00 PM", title:"Client Website Demo 💻" },
+
+    // October 2025
+    { date:"2025-10-02", time:"9:00 AM", title:"Gandhi Jayanti 🌸" },
+    { date:"2025-10-10", time:"6:30 PM", title:"New Campaign Launch 🚀" }
+  ];
+
+  const weekdays = ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"];
+  const monthNames = ["January","February","March","April","May","June","July",
+                      "August","September","October","November","December"];
+
+  let currentDate = new Date();
+
+  // render weekdays
+  function renderWeekdays() {
+    const w = document.getElementById("weekdays");
+    w.innerHTML = "";
+    weekdays.forEach(d=>{
+      let div=document.createElement("div");
+      div.className="day-name";
+      div.textContent=d;
+      w.appendChild(div);
+    });
+  }
+
+  function renderCalendar(date){
+    const year=date.getFullYear();
+    const month=date.getMonth();
+    document.getElementById("monthYear").textContent = monthNames[month]+" "+year;
+
+    const grid=document.getElementById("calendarGrid");
+    grid.innerHTML="";
+    const first=new Date(year,month,1);
+    const startDay=(first.getDay()===0?6:first.getDay()-1);
+    const daysInMonth=new Date(year,month+1,0).getDate();
+    const totalCells=Math.ceil((startDay+daysInMonth)/7)*7;
+
+    for(let i=0;i<totalCells;i++){
+      const cell=document.createElement("div");
+      cell.className="cell";
+      const dateIndex=i-startDay+1;
+      if(dateIndex>=1 && dateIndex<=daysInMonth){
+        const num=document.createElement("div");
+        num.className="date-num";
+        num.textContent=dateIndex;
+        cell.appendChild(num);
+
+        const dayDate=`${year}-${String(month+1).padStart(2,"0")}-${String(dateIndex).padStart(2,"0")}`;
+        if(new Date().toDateString()===new Date(year,month,dateIndex).toDateString()){
+          cell.classList.add("today");
+        }
+
+        // events
+        events.filter(e=>e.date===dayDate).forEach(ev=>{
+          const evDiv=document.createElement("div");
+          evDiv.className="event";
+          evDiv.textContent = (ev.time? ev.time+" – ":"") + ev.title;
+          cell.appendChild(evDiv);
+        });
+      }
+      grid.appendChild(cell);
+    }
+  }
+
+  function prevMonth(){ currentDate.setMonth(currentDate.getMonth()-1); renderCalendar(currentDate); }
+  function nextMonth(){ currentDate.setMonth(currentDate.getMonth()+1); renderCalendar(currentDate); }
+
+  renderWeekdays();
+  renderCalendar(currentDate);
+
+  /* Falling stars animation */
+  const canvas=document.getElementById("stars");
+  const ctx=canvas.getContext("2d");
+  let w,h,stars=[];
+  function resize(){w=canvas.width=window.innerWidth;h=canvas.height=window.innerHeight;}
+  window.addEventListener("resize",resize);resize();
+
+  function Star(){this.x=Math.random()*w;this.y=Math.random()*h;this.vx=-2-Math.random()*2;this.vy=2+Math.random()*2;this.size=Math.random()*2;}
+  for(let i=0;i<150;i++){stars.push(new Star());}
+
+  function draw(){
+    ctx.clearRect(0,0,w,h);
+    ctx.fillStyle="white";
+    stars.forEach(s=>{
+      ctx.beginPath();
+      ctx.arc(s.x,s.y,s.size,0,Math.PI*2);
+      ctx.fill();
+      s.x+=s.vx;s.y+=s.vy;
+      if(s.x<0||s.y>h){s.x=Math.random()*w;s.y=0;}
+    });
+    requestAnimationFrame(draw);
+  }
+  draw();
+</script>
+</body>
+</html>
